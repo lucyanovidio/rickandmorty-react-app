@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Rick e Morty React App 👽🧪
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="./.github/preview.gif" alt="Preview do projeto." />
 
-## Available Scripts
+* <a href="https://rickandmorty-rose-phi.vercel.app/">Acesse aqui.</a>
 
-In the project directory, you can run:
+## 💻 O projeto
 
-### `npm start`
+Projeto de SPA (Single Page Application) utilizando ReactJS e a <a href="https://rickandmortyapi.com">The Rick and Morty API</a>, desenvolvido como desafio técnico a uma vaga de desenvolvedor front-end.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🎯 Requisitos
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Requisitos Funcionais
 
-### `npm test`
+* Tela de lista de personagens.
+* Tela de detalhes do personagem.
+* Funcionalidade de paginação.
+* Funcionalidade de adicionar/remover personagens favoritos.
+* Permitir a vizualização somente dos personagens favoritos.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Requisitos Não Funcionais
 
-### `npm run build`
+* Limitar o numero de personagens adicionados como favorito em 10 personagens no máximo.
+* Quando fechamos o navegador não podemos perder os personagens favoritados.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⚡ Como rodar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para rodar o projeto direto da sua máquina:
+- Baixe o repositório, ou clone com a URL disponível aqui, com o comando
+```
+git clone https://github.com/lucyanovidio/rickandmorty-react-app.git
+```
+- Instale o <a href="https://nodejs.org/">Node.js</a>.
+- Entre no diretório deste projeto e instale as dependências executando:
+```
+npm install
+```
+- Rode o projeto:
+```
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🛠 Tecnologias
 
-### `npm run eject`
+<div>
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+</div>
+<br>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/lucyanovidio.png" width="100px" />
+    </td>
+    <td>
+      Feito por <a href="https://github.com/lucyanovidio">Lucyan Ovídio.</a> 🙋🏿‍♂️
+    </td>
+  </tr>
+</table>
