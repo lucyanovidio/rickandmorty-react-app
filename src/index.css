@@ -46,6 +46,20 @@ body {
   font-size: 1.6rem;
 }
 
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 1rem;
+  background: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: var(--text-color);
+}
+
 body.menu-expanded footer,
 body.menu-expanded .fav-text {
   z-index: -1;
