@@ -1,0 +1,22 @@
+footer {
+    position: absolute;
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+
+    font-size: var(--text-fs-2);
+    text-align: center;
+
+    opacity: .3;
+    transition: .3s;
+}
+
+footer:hover {
+    opacity: 1;
+}
+
+footer a {
+    font-weight: bold;
+    font-style: italic;
+}
