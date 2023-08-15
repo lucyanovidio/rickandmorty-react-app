@@ -26,11 +26,14 @@ function Favorites() {
     const characters = await Promise.all(parsedFavorites.map(getSingleChar));
 
     setCharsArray(characters);
-    setReady(true);
   };
-
+  
   useEffect(() => {
     fetchChars();
+
+    setTimeout(() => {
+      setReady(true);
+    }, 500)
   }, []);
 
   return (
@@ -60,7 +63,9 @@ function Favorites() {
             </p>
           )
         ) : (
-          "Carregando..."
+          <p className="fav-text text-2">
+              Carregando...
+          </p>
         )}
       </ul>
     </div>
