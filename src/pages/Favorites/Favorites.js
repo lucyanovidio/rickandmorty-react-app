@@ -7,7 +7,6 @@ import { getSingleChar } from "../../services/api";
 function Favorites() {
   const [favoriteCharsIds, setFavoriteCharsIds] = useState([]);
   const [charsArray, setCharsArray] = useState([]);
-  const [ready, setReady] = useState(false);
 
   // FUNÇÃO REPETIDAAAAA... @
   function showCharPage(e) {
@@ -27,13 +26,9 @@ function Favorites() {
 
     setCharsArray(characters);
   };
-  
+
   useEffect(() => {
     fetchChars();
-
-    setTimeout(() => {
-      setReady(true);
-    }, 500)
   }, []);
 
   return (
@@ -41,30 +36,24 @@ function Favorites() {
       <h2>Personagens favoritos</h2>
 
       <ul className="chars-container">
-        {ready === true ? (
-          favoriteCharsIds.length > 0 ? (
-            charsArray.map((char) => (
-              <li
-                className="char"
-                key={char.id}
-                id={"-" + char.id}
-                onClick={showCharPage}
-              >
-                <img
-                  src={char.image}
-                  alt={`Imagem do personagem ${char.name}.`}
-                />
-                <p>{char.name}</p>
-              </li>
-            ))
-          ) : (
-            <p className="fav-text text-2">
-              Você ainda não favoritou nenhum personagem.
-            </p>
-          )
+        {favoriteCharsIds.length > 0 ? (
+          charsArray.map((char) => (
+            <li
+              className="char"
+              key={char.id}
+              id={"-" + char.id}
+              onClick={showCharPage}
+            >
+              <img
+                src={char.image}
+                alt={`Imagem do personagem ${char.name}.`}
+              />
+              <p>{char.name}</p>
+            </li>
+          ))
         ) : (
           <p className="fav-text text-2">
-              Carregando...
+            Você ainda não favoritou nenhum personagem.
           </p>
         )}
       </ul>
