@@ -2,7 +2,7 @@
 
 <img src="./.github/preview.gif" alt="Preview do projeto." />
 
-* <a href="https://rickandmorty-rose-phi.vercel.app/">Acesse aqui.</a>
+* <a target="_blank" href="https://rickandmorty-rose-phi.vercel.app/">Acesse aqui.</a>
 
 ## 💻 O projeto
 
