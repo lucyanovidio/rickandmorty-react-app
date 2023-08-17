@@ -36,40 +36,8 @@ export function CharPage({
         localStorage.setItem("favorites", JSON.stringify(newFavorites));
     }
 
-    async function createTranslation({
-      name,
-      status,
-      species,
-      gender,
-      origin,
-      location,
-      translate
-    }) {
-      const translation = {
-        name: translate(name),
-        status: translate(status),
-        species: translate(species),
-        gender: translate(gender),
-        location: translate(location),
-        origin: translate(origin)
-      }
-  
-      const translatedData = await Promise.all(Object.values(translation));
-      const [translatedName, translatedStatus, translatedSpecies, translatedGender, translatedLocation, translatedOrigin] = translatedData;
-  
-      return {
-        name: translatedName,
-        status: translatedStatus,
-        species: translatedSpecies,
-        gender: translatedGender,
-        location: translatedLocation,
-        origin: translatedOrigin
-      };
-    }
-
     return {
         goBack,
         handleFavoriting,
-        createTranslation
     }
 }

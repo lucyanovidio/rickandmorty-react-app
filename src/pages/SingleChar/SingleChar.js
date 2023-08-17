@@ -4,7 +4,7 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import "./styles.css";
 
-import { getSingleCharInfo, translate } from "../../services/api";
+import { getSingleCharInfo } from "../../services/api";
 import { returnFavorites } from "../../utils/utils";
 import { CharPage } from "../../utils/CharPage";
 
@@ -19,19 +19,8 @@ function SingleChar() {
   useEffect(() => {
     async function fetchData() {
       const charInfo = await getSingleCharInfo(id);
-    
-      const configTranslation = {
-        name: charInfo.name,
-        status: charInfo.status,
-        species: charInfo.species,
-        gender: charInfo.gender,
-        location: charInfo.location.name,
-        origin: charInfo.origin.name,
-        translate
-      }
-  
-      const translatedChar = await charPage.createTranslation(configTranslation);
-      setChar({ ...translatedChar, image: charInfo.image});
+
+      setChar(charInfo);
     }
   
     fetchData();
@@ -49,8 +38,8 @@ function SingleChar() {
                 <p>Staus: {char.status}</p>
                 <p>Espécie: {char.species}</p>
                 {char.gender && <p>Gênero: {char.gender}</p>}
-                <p>Local: {char.location}</p>
-                <p>Origem: {char.origin}</p>
+                <p>Local: {char.location.name}</p>
+                <p>Origem: {char.origin.name}</p>
                 <div className="buttonsContainer">
                   <button
                     className="goBackButton"
