@@ -36,27 +36,27 @@ function Home() {
     <div className="container">
       <h1>Rick and Morty App</h1>
 
-      {Object.keys(info).length > 0 ? (
-        <ul className="chars-container">
-          {info.results.map((char) => (
-            <li
-              className="char"
-              key={char.id}
-              id={"-" + char.id}
-              onClick={showCharPage}
-              title="Ver personagem"
-            >
-              <img
-                src={char.image}
-                alt={`Imagem do personagem ${char.name}.`}
-              />
-              <p>{char.name}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-2">Carregando...</p>
-      )}
+      {Object.keys(info).length > 0 
+        ? (<ul className="chars-container">
+            {info.results.map((char) => (
+              <li
+                className="char"
+                key={char.id}
+                id={"-" + char.id}
+                onClick={showCharPage}
+                title="Ver personagem"
+              >
+                <img
+                  src={char.image}
+                  alt={`Imagem do personagem ${char.name}.`}
+                />
+                <p>{char.name}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-2">Carregando...</p>
+        )}
 
       <div className="buttonsContainer">
         <button onClick={page.previous}>
@@ -75,10 +75,9 @@ function Home() {
                   onClick={page.goTo}
                 >
                   {counter >= totalPages - 2
-                    ? totalPages - pagesAmount + 1 + index // chegar no primeiro da lista de botões pra depois somar os index e ficar certo
-                    : counter <= 3
-                    ? index + 1
-                    : counter + index - 2}
+                    ? (totalPages - pagesAmount + 1 + index) // chegar no primeiro da lista de botões pra depois somar os index e ficar certo
+                    : (counter <= 3 ? index + 1 : counter + index - 2)
+                  }
                 </button>
               ))
             : "..."}
@@ -91,10 +90,9 @@ function Home() {
           (button, _) => {
             setTimeout(() => {
               if (counter == button.textContent) {
-                button.classList.add("current");
-              } else {
-                button.classList.remove("current");
+                return button.classList.add("current");
               }
+              button.classList.remove("current");
             }, 1);
           }
         )}

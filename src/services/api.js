@@ -8,6 +8,7 @@ export async function getPageInfo(page) {
         const { data } = await axios.get(
             `${pagesURL}${page}`
         );
+
         return data;
     } catch (error) {
         alert("Houve erro!");
@@ -20,6 +21,7 @@ export async function getSingleCharInfo(id) {
         const { data } = await axios.get(
             `${baseURL}${id}`
         );
+        
         return data;
     } catch (error) {
         alert("Houve erro!");
