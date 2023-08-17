@@ -9,6 +9,7 @@ import { Page } from "../../utils/Page";
 function Home() {
   const [info, setInfo] = useState({});
   const [counter, setCounter] = useState(1);
+  const [ready, setReady] = useState(false);
 
   const totalPages = info.info ? info.info.pages : 0;
   const pagesAmount = 5;
@@ -19,7 +20,7 @@ function Home() {
     totalPages,
     getApiData,
     setInfo,
-    getPageInfo
+    getPageInfo,
   };
 
   const page = Page(configPage);
@@ -28,9 +29,11 @@ function Home() {
 
   useEffect(() => {
     getApiData(setInfo, getPageInfo, counter);
-  }, []);
 
-  console.log(counter);
+    setTimeout(() => {
+      setReady(true);
+    }, 100);
+  }, []);
 
   return (
     <div className="container">
@@ -70,7 +73,9 @@ function Home() {
                   key={counter + index}
                   className={
                     // Mantém estilo para página 1
-                    counter === 1 ? "current" : ""
+                    ready === true
+                      ? (counter === 1 ? "current" : "")
+                      : ""
                   }
                   onClick={page.goTo}
                 >
