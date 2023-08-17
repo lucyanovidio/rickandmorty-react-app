@@ -12,7 +12,7 @@ export async function getPageInfo(page) {
         return data;
     } catch (error) {
         alert("Houve erro!");
-        console.log(error);
+        console.error(error);
     }
 }
 
@@ -21,10 +21,10 @@ export async function getSingleCharInfo(id) {
         const { data } = await axios.get(
             `${baseURL}${id}`
         );
-        
+
         return data;
     } catch (error) {
         alert("Houve erro!");
-        console.log(error);
+        console.error(error);
     }
 }

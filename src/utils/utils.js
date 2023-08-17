@@ -25,6 +25,7 @@ export function Menu() {
       localStorage.setItem("mode", "dark");
       return;
     }
+    
     document.body.classList.add("light");
     localStorage.setItem("mode", "light");
   }

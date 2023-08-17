@@ -28,20 +28,13 @@ export function CharPage({
     
         btn.classList.toggle("favorited");
     
-        console.log(favorites);
-    
         if (!favorites.includes(id)) {
           const newFavorites = [...favorites, id];
-          localStorage.setItem("favorites", JSON.stringify(newFavorites));
-    
-          console.log(localStorage.getItem("favorites"));
-          return;
+          return localStorage.setItem("favorites", JSON.stringify(newFavorites));
         } 
         
         const newFavorites = favorites.filter((favId) => favId !== id);
         localStorage.setItem("favorites", JSON.stringify(newFavorites));
-    
-        console.log(localStorage.getItem("favorites"));
     }
 
     return {

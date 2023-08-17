@@ -10,14 +10,13 @@ export function Page({
     if (!localStorage.getItem("mode")) {
       localStorage.setItem("mode", "dark");
     }
-    
+
     if (!localStorage.getItem("favorites")) {
       localStorage.setItem("favorites", "");
     }
   }
 
   function next() {
-    console.log(counter);
     if (counter === totalPages) {
       return;
     }

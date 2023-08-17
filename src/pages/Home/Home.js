@@ -72,7 +72,6 @@ function Home() {
                 <button
                   key={counter + index}
                   className={
-                    // Mantém estilo para página 1
                     ready === true
                       ? (counter === 1 ? "current" : "")
                       : ""
@@ -80,15 +79,13 @@ function Home() {
                   onClick={page.goTo}
                 >
                   {counter >= totalPages - 2
-                    ? (totalPages - pagesAmount + 1 + index) // chegar no primeiro da lista de botões pra depois somar os index e ficar certo
+                    ? (totalPages - pagesAmount + 1 + index)
                     : (counter <= 3 ? index + 1 : counter + index - 2)
                   }
                 </button>
               ))
             : "..."}
         </div>
-
-        {/* Aplicar estilo a página atual */}
 
         {Array.from(
           document.querySelectorAll(".pagesNums button"),
