@@ -18,6 +18,10 @@ Projeto de SPA (Single Page Application) utilizando ReactJS e a <a href="https:/
 * Funcionalidade de adicionar/remover personagens favoritos.
 * Permitir a vizualização somente dos personagens favoritos.
 
+#### Outros
+
+* Dark/light mode
+
 ### Requisitos Não Funcionais
 
 * Limitar o numero de personagens adicionados como favorito em 10 personagens no máximo.
