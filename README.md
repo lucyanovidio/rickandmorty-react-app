@@ -23,6 +23,10 @@ Projeto de SPA (Single Page Application) utilizando ReactJS e a <a href="https:/
 * Limitar o numero de personagens adicionados como favorito em 10 personagens no máximo.
 * Quando fechamos o navegador não podemos perder os personagens favoritados.
 
+#### Outros adicionados
+
+* Dados dos personagens em português (uso da API <a href="https://mymemory.translated.net/doc/spec.php">MyMemory</a>).
+
 ## ⚡ Como rodar
 
 Para rodar o projeto direto da sua máquina:
