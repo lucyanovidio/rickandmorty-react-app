@@ -2,61 +2,33 @@ import { useState, useEffect } from "react";
 import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
 import "./styles.css";
 
-import { getChars } from "../../services/api";
+import { getPageInfo } from "../../services/api";
+import { getApiData, showCharPage } from "../../utils/utils";
+import { Page } from "../../utils/Page";
 
 function Home() {
-  if (!localStorage.getItem("mode")) {
-    localStorage.setItem("mode", "dark");
-  }
-  // se n existe a lista de favoritos no localstorage, então cria na inicialização da app, ou seja, aqui na home
-  if (!localStorage.getItem("favorites")) {
-    localStorage.setItem("favorites", "");
-  }
-
   const [info, setInfo] = useState({});
   const [counter, setCounter] = useState(1);
 
   const totalPages = info.info ? info.info.pages : 0;
   const pagesAmount = 5;
+  
+  const configPage = {
+    counter, 
+    setCounter,
+    totalPages,
+    getApiData,
+    setInfo,
+    getPageInfo
+  };
 
-  async function getData(page) {
-    setInfo(await getChars(page));
-  }
+  const page = Page(configPage);
+
+  page.init();
 
   useEffect(() => {
-    getData(counter);
+    getApiData(setInfo, getPageInfo, counter);
   }, []);
-
-  function showCharPage(e) {
-    const string = e.target.parentNode.id || e.target.id;
-    const stringIntoArray = string.split("");
-    const id = stringIntoArray.slice(1).join("");
-    window.location.assign(`/character/${id}`);
-  }
-
-  function handleNext() {
-    console.log(counter);
-    if (counter === totalPages) {
-      return;
-    }
-    const newCounter = counter + 1;
-    setCounter(newCounter);
-    getData(newCounter);
-  }
-
-  function handlePrevious() {
-    if (counter === 1) {
-      return;
-    }
-    const newCounter = counter - 1;
-    setCounter(newCounter);
-    getData(newCounter);
-  }
-
-  function goToPage(e) {
-    setCounter(Number(e.target.textContent));
-    getData(Number(e.target.textContent));
-  }
 
   console.log(counter);
 
@@ -87,7 +59,7 @@ function Home() {
       )}
 
       <div className="buttonsContainer">
-        <button onClick={handlePrevious}>
+        <button onClick={page.previous}>
           <BsArrowLeftCircle />
         </button>
 
@@ -100,7 +72,7 @@ function Home() {
                     // Mantém estilo para página 1
                     counter === 1 ? "current" : ""
                   }
-                  onClick={goToPage}
+                  onClick={page.goTo}
                 >
                   {counter >= totalPages - 2
                     ? totalPages - pagesAmount + 1 + index // chegar no primeiro da lista de botões pra depois somar os index e ficar certo
@@ -116,7 +88,7 @@ function Home() {
 
         {Array.from(
           document.querySelectorAll(".pagesNums button"),
-          (button, index) => {
+          (button, _) => {
             setTimeout(() => {
               if (counter == button.textContent) {
                 button.classList.add("current");
@@ -127,7 +99,7 @@ function Home() {
           }
         )}
 
-        <button onClick={handleNext}>
+        <button onClick={page.next}>
           <BsArrowRightCircle />
         </button>
       </div>

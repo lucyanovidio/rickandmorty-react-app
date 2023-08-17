@@ -1,30 +1,19 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import "./styles.css";
 
-import { getSingleChar } from "../../services/api";
+import { getSingleCharInfo } from "../../services/api";
+import { showCharPage } from "../../utils/utils";
 
 function Favorites() {
   const [favoriteCharsIds, setFavoriteCharsIds] = useState([]);
-  const [charsArray, setCharsArray] = useState([]);
+  const [chars, setChars] = useState([]);
 
-  // FUNÇÃO REPETIDAAAAA... @
-  function showCharPage(e) {
-    const string = e.target.parentNode.id || e.target.id;
-    const stringIntoArray = string.split("");
-    const id = stringIntoArray.slice(1).join("");
-    window.location.assign(`/character/${id}`);
-  }
-  // ...AAAAAAAAAAA
-
-  const fetchChars = async () => {
+  async function fetchChars() {
     const storedFavorites = localStorage.getItem("favorites");
     const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
     setFavoriteCharsIds(parsedFavorites);
 
-    const characters = await Promise.all(parsedFavorites.map(getSingleChar));
-
-    setCharsArray(characters);
+    setChars(await Promise.all(parsedFavorites.map(getSingleCharInfo)));
   };
 
   useEffect(() => {
@@ -37,7 +26,7 @@ function Favorites() {
 
       <ul className="chars-container">
         {favoriteCharsIds.length > 0 ? (
-          charsArray.map((char) => (
+          chars.map((char) => (
             <li
               className="char"
               key={char.id}

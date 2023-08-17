@@ -4,75 +4,24 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import "./styles.css";
 
-import { getSingleChar } from "../../services/api";
+import { getSingleCharInfo } from "../../services/api";
+import { getApiData, returnFavorites } from "../../utils/utils";
+import { CharPage } from "../../utils/CharPage";
 
 function SingleChar() {
   const [char, setChar] = useState({});
-  let { id } = useParams();
-  // verificar logo que inicia a página singleChar se o char ta no favorito, pra por a estrela preenchida
-  // COMO EU MELHORO ISSO????
-  let favorites = [];
-  
-  localStorage.getItem("favorites")
-    ? (favorites = JSON.parse(localStorage.getItem("favorites")))
-    : (favorites = localStorage.getItem("favorites"));
+  const { id } = useParams();
 
-  async function getData(id) {
-    setChar(await getSingleChar(id));
-  }
+  const favorites = returnFavorites();
+  const configCharPage = {
+    favorites,
+    id
+  };
+  const charPage = CharPage(configCharPage);
 
   useEffect(() => {
-    getData(id);
+    getApiData(setChar, getSingleCharInfo, id);
   }, []);
-
-  function goBack() {
-    window.history.back();
-  }
-
-  function handleFavorite(e) {
-    let btn;
-    let favorites = [];
-
-    if (e.target.parentNode.tagName === "BUTTON") {
-      btn = e.target.parentNode;
-    } else if (e.target.parentNode.tagName === "svg") {
-      btn = e.target.parentNode.parentNode;
-    } else {
-      btn = e.target;
-    }
-
-    localStorage.getItem("favorites")
-        ? (favorites = JSON.parse(localStorage.getItem("favorites")))
-        : (favorites = localStorage.getItem("favorites"));
-
-    // Se o id não está no array de favoritos, é porque, ao clicar, eu quero adicionar. Então, se temos isso, e também que já tem 10 personagens na lista, impedimos a adição.
-    if (!favorites.includes(id) && favorites.length === 10) {
-        alert("Número máximo de favoritos atingido.");
-        return;
-    }
-
-    if (btn.classList.contains("favorited")) {
-      btn.classList.remove("favorited");
-      btn.classList.add("not-favorited");
-    } else {
-      btn.classList.add("favorited");
-      btn.classList.remove("not-favorited");
-    }
-
-    console.log(favorites);
-
-    if (!favorites.includes(id)) {
-      const newFavorites = [...favorites, id];
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
-
-      console.log(localStorage.getItem("favorites"));
-    } else if (favorites.includes(id)) {
-      const newFavorites = favorites.filter((favId) => favId !== id);
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
-
-      console.log(localStorage.getItem("favorites"));
-    }
-  }
 
   return (
     <div className="container">
@@ -90,7 +39,7 @@ function SingleChar() {
                 <button
                   className="goBackButton"
                   title="Voltar"
-                  onClick={goBack}
+                  onClick={charPage.goBack}
                 >
                   <BsFillArrowLeftCircleFill />
                 </button>
@@ -98,10 +47,10 @@ function SingleChar() {
                   className={
                     favorites.includes(id)
                       ? "favoriteButton favorited"
-                      : "favoriteButton not-favorited"
+                      : "favoriteButton"
                   }
                   title="Favoritar"
-                  onClick={handleFavorite}
+                  onClick={charPage.handleFavoriting}
                 >
                   <AiOutlineStar />
                   <AiFillStar />
@@ -110,7 +59,9 @@ function SingleChar() {
             </div>
           </div>
         </div>
-      ) : (<p className="text-2">Carregando...</p>)}
+      ) : (
+        <p className="text-2">Carregando...</p>
+      )}
     </div>
   );
 }
