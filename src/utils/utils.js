@@ -13,9 +13,9 @@ export function showCharPage(e) {
 export function returnFavorites() {
     if (localStorage.getItem("favorites")) {
         return JSON.parse(localStorage.getItem("favorites"));
-    } else {
-        return localStorage.getItem("favorites");
     }
+
+    return localStorage.getItem("favorites");
 }
 
 export function Menu() {
@@ -23,10 +23,10 @@ export function Menu() {
         if (document.body.classList.contains("light")) {
             document.body.classList.remove("light");
             localStorage.setItem("mode", "dark");
-        } else {
-            document.body.classList.add("light");
-            localStorage.setItem("mode", "light");
+            return;
         }
+        document.body.classList.add("light");
+        localStorage.setItem("mode", "light");
     }
 
     function openMenu() {

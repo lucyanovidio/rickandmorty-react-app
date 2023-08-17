@@ -8,13 +8,16 @@ export function CharPage({
 
     function handleFavoriting(e) {
         let btn;
-    
-        if (e.target.parentNode.tagName === "BUTTON") {
-          btn = e.target.parentNode;
-        } else if (e.target.parentNode.tagName === "svg") {
-          btn = e.target.parentNode.parentNode;
-        } else {
-          btn = e.target;
+
+        switch (e.target.parentNode.tagName) {
+          case ("BUTTON"):
+            btn = e.target.parentNode;
+            break;
+          case ("svg"):
+            btn = e.target.parentNode.parentNode;
+            break;
+          default:
+            btn = e.target;
         }
     
         // Se o id não está no array de favoritos, é porque, ao clicar, eu quero adicionar. Então, se temos isso, e também que já tem 10 personagens na lista, impedimos a adição.
@@ -32,12 +35,13 @@ export function CharPage({
           localStorage.setItem("favorites", JSON.stringify(newFavorites));
     
           console.log(localStorage.getItem("favorites"));
-        } else if (favorites.includes(id)) {
-          const newFavorites = favorites.filter((favId) => favId !== id);
-          localStorage.setItem("favorites", JSON.stringify(newFavorites));
+          return;
+        } 
+        
+        const newFavorites = favorites.filter((favId) => favId !== id);
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
     
-          console.log(localStorage.getItem("favorites"));
-        }
+        console.log(localStorage.getItem("favorites"));
     }
 
     return {
