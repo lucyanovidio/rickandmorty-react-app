@@ -6,7 +6,7 @@ import "./styles.css";
 
 import { getSingleCharInfo, translate } from "../../services/api";
 import { returnFavorites } from "../../utils/utils";
-import { CharPage, createTranslation } from "../../utils/CharPage";
+import { CharPage } from "../../utils/CharPage";
 
 function SingleChar() {
   const [char, setChar] = useState({});
