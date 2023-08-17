@@ -34,12 +34,12 @@ button:hover svg {
 }
 
 .favoriteButton.favorited svg:nth-child(1),
-.favoriteButton.not-favorited svg:nth-child(2) {
+.favoriteButton svg:nth-child(2) {
     display: none;
 }
 
 .favoriteButton.favorited svg:nth-child(2),
-.favoriteButton.not-favorited svg:nth-child(1) {
+.favoriteButton svg:nth-child(1) {
     display: initial;
 }
 
