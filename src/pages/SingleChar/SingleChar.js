@@ -4,7 +4,7 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import "./styles.css";
 
-import { getSingleCharInfo } from "../../services/api";
+import { getSingleCharInfo, translate } from "../../services/api";
 import { returnFavorites } from "../../utils/utils";
 import { CharPage } from "../../utils/CharPage";
 
@@ -19,6 +19,22 @@ function SingleChar() {
   useEffect(() => {
     async function fetchData() {
       const charInfo = await getSingleCharInfo(id);
+    
+      const configTranslation = {
+        name: charInfo.name,
+        status: charInfo.status,
+        species: charInfo.species,
+        gender: charInfo.gender,
+        location: charInfo.location.name,
+        origin: charInfo.origin.name,
+        translate
+      }
+  
+      const translatedChar = await charPage.createTranslation(configTranslation);
+
+      if (translatedChar.name) {
+        return setChar({ ...translatedChar, image: charInfo.image});
+      }
 
       setChar(charInfo);
     }
@@ -37,9 +53,9 @@ function SingleChar() {
                 <p>Nome: {char.name}</p>
                 <p>Staus: {char.status}</p>
                 <p>Espécie: {char.species}</p>
-                {char.gender && <p>Gênero: {char.gender}</p>}
-                <p>Local: {char.location.name}</p>
-                <p>Origem: {char.origin.name}</p>
+                <p>Gênero: {char.gender}</p>
+                <p>Local: {typeof(char.location) === "string" ? char.location : char.location.name}</p>
+                <p>Origem: {typeof(char.origin) === "string" ? char.origin : char.origin.name}</p>
                 <div className="buttonsContainer">
                   <button
                     className="goBackButton"
